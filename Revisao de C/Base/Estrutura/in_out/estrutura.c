@@ -1,5 +1,9 @@
 #include <stdio.h>
 
+// Para mais informações => Revisar slides
+
+int c; 
+
 int main(void) {
     int a;
     int b;
@@ -7,6 +11,7 @@ int main(void) {
 
     a = 5;
     b = 2;
+    c = 3;
 
     // resultado = a + b;
     // resultado = a * b;
