@@ -16,6 +16,9 @@ int main() {
     // Acrescenta os caracteres de uma string origem em uma string de destino.
     // Retorna o endereço do primeiro elemento da string de destino.
 
+
+    // No mais é apenas buscar como utilizar as funções na internet para saber como utilizalas
+
     printf("%s\n", concatenado);
 
     return 0;

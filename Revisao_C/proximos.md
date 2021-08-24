@@ -1,6 +1,7 @@
 ## Próximos objetivos:
 
-* Terminar revisão de strings.
-* Revisão de struct e union.
-* Revisão de arquivos.
+* Antes de continuar revisão => Focar em concluir a listinha
+
+* Revisar union.
+* Revisar arquivos.
 
