@@ -16,7 +16,7 @@ int main() {
     cadastro_t pessoa;
     // struct cadastro pessoa;
 
-    printf("Nomê: ");
+    printf("Nome: ");
     fgets(pessoa.nome, 20, stdin);
     pessoa.nome[strcspn(pessoa.nome, "\n")] = 0;
     // Remover o \n lido pelo fgets()
