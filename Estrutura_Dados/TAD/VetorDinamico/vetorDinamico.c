@@ -12,11 +12,21 @@ struct vetorDinamico {
     float *v; // Ponteiro para armazenar o endereço de memória do vetor dinâmico.
 };
 
+// Funcionalidade: Cria vetor
 VetorDinamico *criaVetor(int dim) {
 
         VetorDinamico *vetor =  (VetorDinamico *) malloc(sizeof(VetorDinamico));
+        // Alocação do vetor dinâmico.
+
+        if(vetor == NULL) {
+            return NULL;
+        }
         vetor->v = (float *) malloc(dim * sizeof(float));
-        // Alocação do veto dinâmico.
+        // Alocação do vetor.
+
+        if(vetor->v == NULL) {
+            return NULL;
+        }
 
         vetor->n = 0;
         // Iniciando indice como "0".
@@ -28,18 +38,10 @@ VetorDinamico *criaVetor(int dim) {
         return vetor;
 }
 
-// Funcionalidade: Criar o vetor.
-
-/*
-Parâmetro(s): 
-
-- (int dim): Dimensão.
-
-Retorno:
-
-- (Sucesso): Endereço do vetor dinâmico.
-*/
-
+// Funcionalidade: Inserir um valor na próxima posição vazia do vetor dinâmico. 
+// Em caso de memória não alocada é realizada uma realocação automática, no qual 
+// a nova dimensão do vetor vai ser igual a dimensão anterior incrementada com a
+// dimensão de realocação.
 int insere_vetor(VetorDinamico *vetor, float v) {
     if(vetor) {
         // Se o vetor existir execute as instruções abaixo.
@@ -75,22 +77,7 @@ int insere_vetor(VetorDinamico *vetor, float v) {
     return -1;
 }
 
-// Funcionalidade: Inserir um valor na próxima posição vazia do vetor dinâmico. Em caso de memória não alocada é realizada
-// uma realocação automática, no qual a nova dimensão do vetor vai ser igual a dimensão anterior incrementada com a
-// dimensão de realocação.
-
-/*
-Parâmetro(s): 
-
-- (VetorDinamico *vetor): Vetor dinâmico.
-- (float v): Valor a ser inserido no vetor.
-
-Retorno:
-
-- (Sucesso): 1.
-- (Fracasso): -1.
-*/
-
+// Funcionalidade: Remover elemento da última posição.
 int remove_vetor(VetorDinamico *vetor) {
     if(vetor && vetor->n > 0) {
         // Se existir e tiver mais de um elemento, execute as instruções abaixo.
@@ -116,19 +103,7 @@ int remove_vetor(VetorDinamico *vetor) {
     return -1;
 }
 
-// Funcionalidade: Remover elemento da última posição.
-
-/*
-Parâmetro(s): 
-
-- (VetorDinamico *vetor): Vetor dinâmico.
-
-Retorno:
-
-- (Sucesso): 1.
-- (Fracasso): -1.
-*/
-
+// Funcionalidade: Acessar o valor da posição "i" do vetor dinâmico.
 int acessa_vetor(VetorDinamico *vetor, int i, float *v) {
     if(vetor &&  (0 <= i <= vetor->dim)) {
         // Se o vetor existir e a posição desejada estiver entre 0 e o tamanho do vetor dinâmico
@@ -141,21 +116,7 @@ int acessa_vetor(VetorDinamico *vetor, int i, float *v) {
     return -1;
 }
 
-// Funcionalidade: Acessar o valor da posição "i" do vetor dinâmico.
-
-/*
-Parâmetro(s): 
-
-- (VetorDinamico *vetor): Vetor dinâmico.
-- (int i): Indice do valor desejado.
-- (float *v): Endereço da variável no qual o valor da posição "i" do vetor dinâmico será armazenado.
-
-Retorno:
-
-- (Sucesso): 1.
-- (Fracasso): -1.
-*/
-
+// Funcionalidade: Retornar o tamanho do vetor dinâmico.
 int tamanho_vetor(VetorDinamico *vetor) {
     if(vetor) {
         // Se o vetor existir execute as instruções abaixo.
@@ -164,19 +125,7 @@ int tamanho_vetor(VetorDinamico *vetor) {
     return -1;
 }
 
-// Funcionalidade: Retornar o tamanho do vetor dinâmico.
-
-/*
-Parâmetro(s): 
-
-- (VetorDinamico *vetor): Vetor dinâmico.
-
-Retorno:
-
-- (Sucesso): Tamanhho do vetor.
-- (Fracasso): -1.
-*/
-
+// Funcionalidade: Redefinir dimensão de realocação.
 int redefinir_dim_rlc(VetorDinamico *vetor, int dim_rlc) {
     if(vetor && dim_rlc > 0) {
         // Se existir e a dimensão informada for maior que zero, execute as instruções abaixo.
@@ -188,21 +137,7 @@ int redefinir_dim_rlc(VetorDinamico *vetor, int dim_rlc) {
     return -1;
 }
 
-// Funcionalidade: Redefinir dimensão de realocação.
-
-/*
-Parâmetro(s): 
-
-- (VetorDinamico *vetor): Vetor dinâmico.
-- (int dim_rlc): Nova dimensão de realocação.
-
-Retorno:
-
-- (Sucesso): 1.
-- (Fracasso): -1.
-*/
-
-
+// Funcionalidade: Liberar o vetor dinâmico da memória.
 void libera_vetor(VetorDinamico *vetor) {
     if(vetor) {
         // Se o vetor existir execute as instruções abaixo.
@@ -212,19 +147,5 @@ void libera_vetor(VetorDinamico *vetor) {
         // Liberar vetor dinâmico.
     }
 }
-
-// Funcionalidade: Liberar o vetor dinâmico da memória.
-
-/*
-Parâmetro(s): 
-
-- (VetorDinamico *vetor): Vetor dinâmico.
-
-Retorno:
-
-- Sem retorno.
-*/
-
-// -> Verificar com Anderson se foi liberado corretamente.
 
 #endif
