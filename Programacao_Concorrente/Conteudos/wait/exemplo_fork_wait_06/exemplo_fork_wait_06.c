@@ -5,6 +5,8 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+// Melhor explicação no código de wait X waitpid
+
 int main(void) {
     pid_t fork_return;
     int valor_usuario;
@@ -33,8 +35,6 @@ int main(void) {
             printf("ORIGINAL: PID %d\n", getpid());
             printf("ORIGINAL: aguardando processo clonado sair...\n");
             wait(&retorno_filho);
-            // Recebe o primeiro valor de retorno de processo disponível
-            // Esse "Retorno" é realizado pela função exit()
             printf("ORIGINAL: processo original recebeu do clonado: %d\n", WEXITSTATUS(retorno_filho));
             sleep(5);
             printf("ORIGINAL: finalizando...\n");
