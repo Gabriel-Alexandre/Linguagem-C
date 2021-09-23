@@ -27,7 +27,7 @@ int main(void)
     printf("Dentro da funcao main()\n");
     printf("Vou criar duas threads!\n");
 
-    // Os parâmetros vão ser melhor explicados depois
+    // pthread_create((Endereço thread), (ED para criação), (Função), (Passa identificador para thread));
     pthread_create(&thread1, NULL, funcao_thread, NULL);
     pthread_create(&thread2, NULL, funcao_thread, NULL);
 
