@@ -5,16 +5,17 @@
 
 #define QTD_THREADS 5
 
+// long (bits)
 long var_global;
 
 // Toda funcao thread precisa ter esse cabeçalho
 void *funcao_thread(void *param)
 {
     long id = (long)param;
-    printf("[#%d] Thread %d criada!\n", id, id);
+    printf("[#%ld] Thread %ld criada!\n", id, id);
     sleep(5);
     var_global++;
-    printf("[#%d] var_global = %d\n", id, var_global);
+    printf("[#%ld] var_global = %ld\n", id, var_global);
     pthread_exit((void *)var_global + id);
     // pthread_exit((void *)(Valor de retorno));
 }
