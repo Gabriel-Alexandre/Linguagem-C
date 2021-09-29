@@ -1,0 +1,12 @@
+* Processo: É o programa em execução e o ambiente onde o programa vai ser executado. Contém informações 
+sobre a execução do programa e sobre os recursos que o programa pode utilizar como espaço de endereçamento, 
+uso do processador, área em disco, etc.
+
+* Thread: É uma "Linha" de execução dentro de um processo, no qual cada thread tem o seu próprio estado de processador 
+e a sua própria pilha. Além disso, todas as threads dentro de um mesmo processo ocupam a mesma região de memória, o que 
+facilita a troca de informações.
+
+Do ponto de vista de execução as threads são muito menos custosas que os processos, justamente pelo fato de serem uma
+instância deste, o que as torna melhores no quisito de desempenho, porém isso não as torna melhores que um processo,
+em aplicações onde o isolamento das instâncias é muito importante, os processos se tornam melhores candidatos, 
+justamente pelo fato de terem um contexto independente no qual podem se isolar do restante do sistema.

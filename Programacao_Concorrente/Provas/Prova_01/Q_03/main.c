@@ -45,7 +45,6 @@ void *func_thread(void *param) {
 int main(void) {
     pthread_t threads[QTD_THREADS];
     char *results[QTD_THREADS];
-    char result;
 
     // criando threads
     for(long i = 0; i < QTD_THREADS; i++) {

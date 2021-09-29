@@ -1,0 +1,18 @@
+Ciclo de vida das threads: 
+
+* Faz referência aos estados que a thread passa durante a execução do programa. 
+
+* Esse estados podem ser simplificados em três principais:
+
+* Bloqueado: Instruções estão bloqueadas aguardando ações de Entrada/Saída para continuar execução. 
+(Quando um programa é bloqueado e recebe a entrada ou saída necessária, seu próximo estado vai ser o Pronto, 
+e sua execução só ira continuar progredindo quando o escalonador o selecionar novamente).
+
+* Em Execução: Instruções são executadas pelo escalonador.
+
+* Pronto: Instruções estão prontas para serem executadas pelo escalonador.
+
+No código da questão 3 cada thread tem seu ciclo de vida específico que é concatenar sua parte de strings e retorna o
+endereço dessa parte. Enquanto as threads são executadas de maneira concorrente, elas competem pelo o estado de execução
+no escalonador, enquanto não estão no estado de execução, permanecem no estado pronto até que sejam selecionadas
+novamente pelo escalonador.
