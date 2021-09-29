@@ -1,0 +1,26 @@
+Consistência de memória: O código implementado na questão 5 apresenta uma certa inconsistência de memória, pois a 
+região de memória compartilhada é incrementada com mais de uma instrução, apesar de ser um única instrução na linguagem C, 
+em um nível mais baixo de linguagem de programação, a instrução é dividida em outras instruções menores, e esse 
+procedimento pode causar perca de valores durante a execução do programa, pois como as threads criadas executam 
+de maneira concorrente e o escalonador não escolhe de maneira sequêncial as threads executadas, então durante as
+execuções da threads pode ocorrer perdas de valores que deveriam ter sido somados ou subtraídos.
+
+Os trechos perigosos do código da questão 5 são: 
+
+if(id % 3 == 0) {
+    aux = 1 + rand()%3;
+        sleep(aux);
+
+        for(int i = 0; i < 100; i++) {
+            var_global++;
+        }
+   }else {
+        sleep(1);
+
+        for(int i = 0; i < 33; i++) {
+            var_global--;
+        }
+}
+
+O que poderia ser feito para tratar a o uso da região de memória compartilha é uso de instruções atômicas, pois sua
+instrução não é dividida em outras instruções menores e isso acaba impossibilitando a perda de valores nessa situação.
