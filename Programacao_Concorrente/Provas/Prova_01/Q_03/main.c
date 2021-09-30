@@ -5,8 +5,6 @@
 #include <string.h>
 #define QTD_THREADS 26
 
-const char letras[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
 void *func_thread(void *param) {
     // Traduzindo indice para seu algarismo correspondente na tabela asc
     long id = (long) param + 65;
@@ -17,19 +15,19 @@ void *func_thread(void *param) {
 
     // Identificando qual valor será iniciado a parte do identificador da thread
     for(int i = 0; i < QTD_THREADS; i++) {
-        if(id == letras[i]) {
-            aux[0] = letras[i];
+        if(id == ('A' + i)) {
+            aux[0] = 'A' + i;
             break;
         }
     }
 
     // Preenchendo cada parte da threand a partir da concatenação da variável aux
     for(int i = 0; i < QTD_THREADS; i++) {
-        aux[1] = letras[i];
+        aux[1] = 'A' + i;
         for(int j = 0; j < QTD_THREADS; j++) {
-            aux[2] = letras[j];
+            aux[2] = 'A' + j;
             for(int k = 0; k < QTD_THREADS; k++) {
-                aux[3] = letras[k];
+                aux[3] = 'A' + k;
                 aux[4] = ',';
 
                 strcat(aux2, aux);
@@ -44,7 +42,7 @@ void *func_thread(void *param) {
 
 int main(void) {
     pthread_t threads[QTD_THREADS];
-    char *results[QTD_THREADS];
+    char *results;
 
     // criando threads
     for(long i = 0; i < QTD_THREADS; i++) {
@@ -61,7 +59,8 @@ int main(void) {
         for (int i = 0; i < QTD_THREADS; i++) {
             pthread_join(threads[i], (void*)&results);
 
-            fprintf(arq,"%s",*results);
+            fprintf(arq,"%s",results);
+            free(results);
         }
     }
 
