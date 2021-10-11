@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "arrayEstatico.h"
+#include "listaEncadeada.h"
 
 int main() {
 
@@ -43,29 +43,6 @@ int main() {
         printf("A fila está vazia\n");
     }else {
         printf("A fila não está vazia\n");
-    }
-
-    printf("Enxendo a fila\n");
-    for(int i = 0; i < 49; i++) {
-        insert_queue(queue, i);
-    }
-
-    aux =isMax_queue(queue);
-
-    if(aux) {
-        printf("A fila está cheia\n");
-    }else {
-        printf("A fila não está cheia\n");
-    }
-
-    remove_queue(queue);
-
-    aux =isMax_queue(queue);
-
-    if(aux) {
-        printf("A fila está cheia\n");
-    }else {
-        printf("A fila não está cheia\n");
     }
 
     clear_queue(queue);
