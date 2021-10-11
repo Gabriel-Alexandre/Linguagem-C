@@ -3,6 +3,7 @@
         "stdlib.h": "c",
         "new": "cpp",
         "iosfwd": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "pthread.h": "c"
     }
 }
