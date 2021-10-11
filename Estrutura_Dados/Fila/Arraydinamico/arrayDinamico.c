@@ -2,12 +2,12 @@
 #define _ARRAYESTATICO_C_
 #include <stdio.h>
 #include <stdlib.h>
-#include "arrayEstatico.h"
-#define MAX_SIZE 50
+#include "arrayDinamico.h"
+#define SIZE 20
 
 struct queue {
-    int inicio, fim, quantidade;
-    int valor[MAX_SIZE];
+    int inicio, fim, quantidade, dim;
+    int *valor;
 };
 
 // *Inserção no fim. (fim -> Próxima posição vazia no fim)
@@ -15,11 +15,17 @@ struct queue {
 
 Queue *create_queue() {
     Queue *queue = (Queue *) malloc(sizeof(Queue));
-
+    
     if(queue != NULL) {
         queue->inicio = 0;
         queue->fim = 0;
         queue->quantidade = 0;
+        queue->dim = SIZE;
+        queue->valor = (int *) malloc(SIZE*sizeof(int));
+
+        if(queue->valor == NULL) {
+            return NULL;
+        }
     }
 
     return queue;
@@ -28,12 +34,18 @@ Queue *create_queue() {
 int insert_queue(Queue *queue, int valor) {
     if(queue != NULL) {
 
-        if(isMax_queue(queue)) {
-            return 0;
+        if(queue->quantidade == queue->dim) {
+            queue->valor = (int*) realloc(queue->valor, 2*queue->dim*sizeof(int));
+
+            if (queue->valor == NULL) {
+                return 0;
+            }
+
+            queue->dim = 2*queue->dim;
         }
 
         queue->valor[queue->fim] = valor;
-        queue->fim = (queue->fim + 1) % MAX_SIZE;
+        queue->fim = (queue->fim + 1) % queue->dim;
         // Essa operação garante a circularidade da fila, ou seja, quando a fila estiver
         // cheia, o indice fim apontara para a primeira posição.
         queue->quantidade++;
@@ -50,7 +62,7 @@ int remove_queue(Queue *queue) {
             return 0;
         }
 
-        queue->inicio = (queue->inicio + 1) % MAX_SIZE;
+        queue->inicio = (queue->inicio + 1) % queue->dim;
         // Essa operação garante a circularidade da fila, ou seja, quando a fila estiver
         // cheia, o indice fim apontara para a primeira posição.
         queue->quantidade--;
@@ -95,21 +107,9 @@ int isEmpty_queue(Queue *queue) {
     return -1;
 }
 
-int isMax_queue(Queue *queue) {
-    if(queue != NULL) {
-        if(queue->quantidade == MAX_SIZE) {
-            return 1;
-        }else {
-            return 0;
-        }
-    }
-
-    return -1;
-}
-
 void clear_queue(Queue *queue) {
+    free(queue->valor);
     free(queue);
 }
-
 
 #endif

@@ -1,0 +1,2 @@
+* Para executar o Valgrind , passe o executável como argumento (junto com quaisquer parâmetros ao programa).
+* informações importantes em: https://qastack.com.br/programming/5134891/how-do-i-use-valgrind-to-find-memory-leaks
