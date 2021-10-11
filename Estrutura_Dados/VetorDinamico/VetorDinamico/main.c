@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "vetorDinamico.h"
 
-// Código de teste:
+// Código de teste: VetorDinamico
 
 void imprime_vetor(VetorDinamico *vetor) {
     int tamanhoVetor;
