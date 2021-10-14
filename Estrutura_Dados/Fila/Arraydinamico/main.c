@@ -45,12 +45,12 @@ int main() {
         printf("A fila não está vazia\n");
     }
 
-    printf("Ultrapassando dimenssão padrão de 20 para 25\n");
+    printf("Ultrapassando dimenssão padrão de 20 elementos e inserindo 25 elementos...\n");
     for(int i = 0; i < 25; i++) {
         insert_queue(queue, i);
     }
 
-    printf("Testando se realocação funcionou\n");
+    printf("Testando se realocação funcionou...\n");
     printf("Tamanho: %d\n", size_queue(queue));
 
     clear_queue(queue);

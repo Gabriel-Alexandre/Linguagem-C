@@ -105,7 +105,7 @@ int size_queue(Queue *queue) {
 
 int isEmpty_queue(Queue *queue) {
     if(queue == NULL)
-        return 1;
+        return -1;
     if(queue->inicio == NULL && queue->fim == NULL) 
         return 1;
     
