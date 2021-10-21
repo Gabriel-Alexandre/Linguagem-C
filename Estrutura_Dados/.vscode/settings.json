@@ -2,6 +2,9 @@
     "files.associations": {
         "stdio.h": "c",
         "stdlib.h": "c",
-        "arraydinamico.h": "c"
+        "arraydinamico.h": "c",
+        "listaencadeada.h": "c",
+        "string.h": "c",
+        "pilha.h": "c"
     }
 }

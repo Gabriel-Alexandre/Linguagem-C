@@ -1,14 +1,12 @@
 #include <stdio.h>
-#include "listaEncadeada.h"
 #include <string.h>
+#include "pilha.h"
 
 int verificar_sentenca(char sentenca[]) {
     Stack *stack;
-    int aux;
-    int c1 = 0; 
-    int c2 = 0;
     char caracter;
-    int quant;
+    int aux, quant;
+    int c1 = 0; int c2 = 0;
 
     quant = strlen(sentenca);
 

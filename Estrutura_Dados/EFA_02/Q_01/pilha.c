@@ -1,8 +1,8 @@
-#ifndef _LISTAENCADEADA_C_
-#define _LISTAENCADEADA_C_
+#ifndef _PILHA_C_
+#define _PILHA_C_
 #include <stdio.h>
 #include <stdlib.h>
-#include "listaEncadeada.h"
+#include "pilha.h"
 
 struct stack {
     No *topo;

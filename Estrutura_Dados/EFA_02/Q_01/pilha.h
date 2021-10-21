@@ -1,5 +1,5 @@
-#ifndef _LISTAENCADEADA_H_
-#define _LISTAENCADEADA_H_
+#ifndef _PILHA_H_
+#define _PILHA_H_
 
 typedef struct stack Stack;
 typedef struct no No;
