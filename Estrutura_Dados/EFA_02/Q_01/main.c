@@ -71,7 +71,7 @@ int main() {
     // Verificando sentenças
     for(int i = 0; i < 7; i++) {
         if(verificar_sentenca(testes[i])) {
-            printf("%s - É correta\n", testes[i]);
+            printf("%s - é correta\n", testes[i]);
         } else {
             printf("%s - Não é correta\n", testes[i]);
         }

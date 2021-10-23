@@ -2,18 +2,17 @@
 #include <stdlib.h>
 
 int maior_valor(int vetor[], int quant) {
-    int maior = 0;
+    int maior = 0; // Executa 1 vez
 
-    for(int i = 0; i < quant; i++) {
-        // Primeira execução, maior é o primeiro elemento
-        if(i == 0)
-            maior = vetor[i];
-        
+    // Primeira execução, maior é o primeiro elemento
+    maior = vetor[0]; // Executa 1 vez
+
+    for(int i = 1; i < quant; i++) { // Executa n vezes
         // Identifica maior, comparando com cada elemento do vetor
-        maior = (maior > vetor[i]) ? maior : vetor[i];
+        maior = (maior > vetor[i]) ? maior : vetor[i]; // No pior caso Executa (n-1) vezes
     }
 
-    return maior;
+    return maior; // Executa 1 vez
 }
 
 int main() {

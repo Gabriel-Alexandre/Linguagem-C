@@ -50,17 +50,37 @@ int verificar_sentenca(char sentenca[]) {
 }
 
 int main() {
+    char aux[50];
+    int len;
 
     // Casos de teste
-    char *testes[] = {"ANA", "JOAO", "ALBERTO", "AMOR A ROMA",
-                    "LAVA ESSE AVAL", "GABRIEL", "ALEXANDRE"};
+    // char *testes[] = {"ANA", "JOAO", "ALBERTO", "AMOR A ROMA",
+    //                 "LAVA ESSE AVAL", "GABRIEL", "ALEXANDRE"};
     
     // Verificando sentenças
-    for(int i = 0; i < 7; i++) {
-        if(verificar_sentenca(testes[i])) {
-            printf("%s - É Palíndroma\n", testes[i]);
+    // for(int i = 0; i < 7; i++) {
+    //     if(verificar_sentenca(testes[i])) {
+    //         printf("%s - é Palíndroma\n", testes[i]);
+    //     } else {
+    //         printf("%s - Não é Palíndroma\n", testes[i]);
+    //     }
+    // }
+
+    // Casos de teste
+    while(1) {
+        printf("Digite um sentença (ou 'N' para encerrar o programa): ");
+        fgets(aux, 50, stdin);
+        len = strlen(aux);
+        if (aux[len - 1] == '\n') aux[--len] = 0;
+
+        if(!strcmp(aux, "N")) 
+            break;
+
+        // Verificando sentenças
+        if(verificar_sentenca(aux)) {
+            printf("%s - é Palíndroma\n", aux);
         } else {
-            printf("%s - Não é Palíndroma\n", testes[i]);
+            printf("%s - Não é Palíndroma\n", aux);
         }
     }
 
