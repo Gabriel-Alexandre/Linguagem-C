@@ -5,6 +5,7 @@
         "iosfwd": "cpp",
         "iostream": "cpp",
         "pthread.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "unistd.h": "c"
     }
 }
