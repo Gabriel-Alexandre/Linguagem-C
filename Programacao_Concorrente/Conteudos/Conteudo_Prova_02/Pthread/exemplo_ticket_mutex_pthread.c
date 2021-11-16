@@ -50,7 +50,7 @@ void *cs(void *p)
 
         //        while (!(turn[idx] == next))
         //      ;
-        //pthread_mutex_lock(&condicao_mutex);
+        pthread_mutex_lock(&condicao_mutex);
         if (turn[idx] % next == 0)
         {
             pthread_cond_signal(&condicao_cond);
