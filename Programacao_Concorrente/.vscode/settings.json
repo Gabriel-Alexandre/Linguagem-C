@@ -4,6 +4,7 @@
         "new": "cpp",
         "iosfwd": "cpp",
         "iostream": "cpp",
-        "pthread.h": "c"
+        "pthread.h": "c",
+        "stdio.h": "c"
     }
 }
