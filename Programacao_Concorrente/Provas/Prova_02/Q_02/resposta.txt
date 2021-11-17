@@ -1,0 +1,23 @@
+* Espera ocupada: São testes repetidos de uma condição que impedem o progresso de um processo ou thread.
+
+- Exemplo de código: Nesse exemplo a implementação do modelo de espera ocupada é usada como solução para 
+implementação de uma trava, no qual o programa ficar travado em "while (in2 == 1)" até que sua condição
+seja atendida.
+
+    void *cs1(void *p) {
+        while (1) {
+            /* Inicio protocolo de entrada */
+            while (in2 == 1)
+                ;
+            in1 = 1;
+            /* Fim protocolo de entrada */
+            var_global++;
+            sleep(3);
+            in1 = 0; //protocolo de saida
+        }
+    }
+    
+
+- Situação interessante: O modelo de implementação utilizando espera ocupada pode ser usado principalmente
+quando se tem recursos computacionais sobrando, e quando é necessário que exista uma resposta imediata para
+determinada solução.

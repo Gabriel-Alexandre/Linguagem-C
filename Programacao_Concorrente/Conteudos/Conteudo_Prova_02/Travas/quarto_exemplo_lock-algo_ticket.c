@@ -41,7 +41,7 @@ void *funcao_secao_critica(void *p)
     {
         // Cada thread que entrar recebe um ticket
         turn[id] = __sync_fetch_and_add(&number, 1); //protocolo de entrada
-        // Quando seu ticket for igual ao ticket o acesso a seção crítica é liberado
+        // Quando seu ticket for igual ao ticket o acesso a seção crítica é liberada
         while (turn[id] != next)
             ;         //protocolo de entrada
         var_global++; //secao critica
