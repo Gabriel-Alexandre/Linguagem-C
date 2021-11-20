@@ -8,7 +8,8 @@
 
 // Essa implementação serviu como base para eu entender como funciona uma arvore binária e como posso implementar 
 // algumas funções de maneira diferente, porém se for necessário implementar um arvore binária usar o TAD do professor
-// adicionando as devidas especificidades de cada questão.
+// adicionando as devidas especificidades de cada questão. (Qualquer coisa se precisar implementar mais funções, posso 
+// usar esse meu TAD como referência).
 
 // Padrão de retorno:
 
