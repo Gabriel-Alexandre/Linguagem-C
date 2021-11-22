@@ -4,16 +4,17 @@
 #include <stdlib.h>
 #include "arvores_binarias_busca.h"
 
-// Ordem de percurso: Pos ordem.
-
 // Padrão de retorno:
 
-// return -1: Erro de criação da pilha
-// return 0: Erro de execução da função
+// return -1: Arvore não existe
 // return 1: Sucesso na execução da função
 
 // Arvore binária de busca só aceita valores únicos ?
 // Seria bom eu adicionar código de erro nas funções ?
+
+// Em caso de valores repetidos, buscar não fazer uma nova alocação dinâmica, pois
+// seguindo a implementação até agora, a alocação é realizada mesmo quando o valor informado é
+// repetido.
 
 struct arv {
     ArvNo* raiz;
@@ -46,23 +47,29 @@ static ArvNo* insere(ArvNo* raiz, int valor) {
     } else if(valor < raiz->info) 
         raiz->esq = insere(raiz->esq, valor);
     // Se o valor recebido for maior que a raiz, inserir a direita
-    else
+    else if(valor > raiz->info) 
         raiz->dir = insere(raiz->dir, valor);
+    // Se o valor recebido já existe, não inserir novo valor
 
     return raiz;
 }
 
-void arv_insere(Arv* arv, int valor) {
+int arv_insere(Arv* arv, int valor) {
+    if(arv == NULL)
+        return -1;
+    
     arv->raiz = insere(arv->raiz, valor); // Altera arvore
+
+    return 1;
 }
 
-static ArvNo* remove(ArvNo* raiz, int valor) {
+static ArvNo* remover(ArvNo* raiz, int valor) {
     if(raiz == NULL) 
         return NULL;
     else if(raiz->info > valor)
-        raiz->esq = remove(raiz->esq, valor); // Percorre recursivamente o nó a esquerda
+        raiz->esq = remover(raiz->esq, valor); // Percorre recursivamente o nó a esquerda
     else if(raiz->info < valor)
-        raiz->dir = remove(raiz->dir, valor); // Percorre recursivamente o nó a direita
+        raiz->dir = remover(raiz->dir, valor); // Percorre recursivamente o nó a direita
     else {
         // Não tem filho
         if(raiz->esq == NULL && raiz->dir == NULL) {
@@ -88,7 +95,7 @@ static ArvNo* remove(ArvNo* raiz, int valor) {
             }
             // Seta os valores
             raiz->info = f->info; // O valor do nó é substituido pelo valor do sucessor
-            raiz->esq = remove(raiz->esq, valor); // A subarvore a esquerda é atualizada
+            raiz->esq = remover(raiz->esq, valor); // A subarvore a esquerda é atualizada
             // A subarvore a direita permanece com a mesma estrutura
         }
     }
@@ -96,8 +103,13 @@ static ArvNo* remove(ArvNo* raiz, int valor) {
     return raiz;
 }
 
-void arv_remove(Arv* arv, int valor) {
-    arv->raiz = remove(arv->raiz, valor); // Altera arvore
+int arv_remove(Arv* arv, int valor) {
+    if(arv == NULL)
+        return -1;
+
+    arv->raiz = remover(arv->raiz, valor); // Altera arvore
+
+    return 1;
 }
 
 static ArvNo* busca(ArvNo* raiz, int valor) {
@@ -112,7 +124,10 @@ static ArvNo* busca(ArvNo* raiz, int valor) {
 }
 
 ArvNo* arv_busca(Arv* arv, int valor) {
-    return busca(arv, valor); // Retorna endereço do nó compatível com o valor recebido
+    if(arv == NULL)
+        return NULL;
+
+    return busca(arv->raiz, valor); // Retorna endereço do nó compatível com o valor recebido
 }
 
 static void libera(ArvNo* raiz) {
@@ -124,6 +139,9 @@ static void libera(ArvNo* raiz) {
 }
 
 void arv_libera(Arv* arv) {
+    if(arv == NULL) 
+        return;
+
     libera(arv->raiz); // Libera nóis
     free(arv); // Libera arvore
 }
