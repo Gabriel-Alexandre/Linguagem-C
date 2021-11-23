@@ -81,8 +81,8 @@ int totalNo_arv(No* raiz) {
     if(*raiz == NULL) 
         return 0; // Arvore vaiza
 
-    int alt_esq = altura_arv(((*raiz)->esq)); // Percorre recursivamente o nó a esquerda
-    int alt_dir = altura_arv(((*raiz)->dir)); // Percorre recursivamente o nó a direita
+    int alt_esq = totalNo_arv(((*raiz)->esq)); // Percorre recursivamente o nó a esquerda
+    int alt_dir = totalNo_arv(((*raiz)->dir)); // Percorre recursivamente o nó a direita
     return(alt_esq + alt_dir + 1); // Retorna a quantidade total de nóis
 
     // O funcionamento da função pode ser entendido de maneira semelhante a função "altura_arv()".

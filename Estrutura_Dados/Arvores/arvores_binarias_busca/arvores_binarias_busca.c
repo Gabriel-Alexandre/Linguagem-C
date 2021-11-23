@@ -9,12 +9,6 @@
 // return -1: Arvore não existe
 // return 1: Sucesso na execução da função
 
-// Arvore binária de busca só aceita valores únicos ?
-// Seria bom eu adicionar código de erro nas funções ?
-
-// Em caso de valores repetidos, buscar não fazer uma nova alocação dinâmica, pois
-// seguindo a implementação até agora, a alocação é realizada mesmo quando o valor informado é
-// repetido.
 
 struct arv {
     ArvNo* raiz;
@@ -96,7 +90,6 @@ static ArvNo* remover(ArvNo* raiz, int valor) {
             // Seta os valores
             raiz->info = f->info; // O valor do nó é substituido pelo valor do sucessor
             raiz->esq = remover(raiz->esq, valor); // A subarvore a esquerda é atualizada
-            // A subarvore a direita permanece com a mesma estrutura
         }
     }
 
@@ -127,7 +120,42 @@ ArvNo* arv_busca(Arv* arv, int valor) {
     if(arv == NULL)
         return NULL;
 
-    return busca(arv->raiz, valor); // Retorna endereço do nó compatível com o valor recebido
+    return busca(arv->raiz, valor); // Retorna endereço do nó que contém a informação do valor recebido
+}
+
+static int totalNo(ArvNo *raiz) {
+    if(raiz == NULL)
+        return 0;
+
+    int alt_esq = totalNo(raiz->esq); // Percorre recursivamente o nó a esquerda
+    int alt_dir = totalNo(raiz->dir); // Percorre recursivamente o nó a direita
+    return(alt_esq + alt_dir + 1); // Retorna a quantidade total de nóis
+}
+
+int arv_totalNo(Arv *arv) {
+    if(arv == NULL) 
+        return -1;
+    if(arv->raiz == NULL) 
+        return 0; // Arvore vaiza
+
+    return totalNo(arv->raiz); // Retorna total de nóis
+}
+
+static void mostra(ArvNo *raiz) {
+    if(raiz == NULL)
+        return;
+
+    // mostra os valores em pos ordem
+    mostra(raiz->esq); // Percorre recursivamente o nó a esquerda
+    mostra(raiz->dir); // Percorre recursivamente o nó a direita
+    printf("%d\n", raiz->info); // printa o valor do nó
+}
+
+void arv_mostra(Arv* arv) {
+    if(arv == NULL || arv->raiz == NULL) // Arvore não existe ou está vazia
+        return;
+    
+    mostra(arv->raiz); // Mostra os valores da arvore
 }
 
 static void libera(ArvNo* raiz) {
@@ -153,9 +181,9 @@ void arv_libera(Arv* arv) {
 - Próximos passos:
 
 1- Entender e comentar funções implementadas. (OK)
-2- Testar funções implementadas.
-3- Implementar e comentar funções que faltam.
-4- Testar funções implementadas.
+2- Testar funções implementadas. (OK)
+3- Implementar e comentar funções que faltam. (OK)
+4- Testar funções implementadas. (OK)
 5- Começar a escrever resposata da questão 1.
 6- Ajudar Anderson no que for necessário.
 7- Estudar e implementar arvores AVL.

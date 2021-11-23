@@ -1,47 +1,54 @@
 #include <stdio.h>
 #include "arvores_binarias_busca.h"
+#define QUANT_TEST 10
 
 int main() {
     Arv *arv;
     ArvNo *no;
-    int n1, n2, n3, n4;
-    n1 = 10;
-    n2 = 20;
-    n3 = 30;
-    n4 = 5;
+    int inserir[QUANT_TEST] = {10, 10, 30, 35, 6, 4, 12, 50, 50, 60}; // Total de números únicos: 8
+    int buscar[QUANT_TEST] = {10, 20, 30, 5, 6, 100, 12, 50, 45, 60};
 
     // Criar
     arv = arv_cria();
 
     // Inserir
-    arv_insere(arv, n1);
-    arv_insere(arv, n2);
-    arv_insere(arv, n2);
-    arv_insere(arv, n3);
-    arv_insere(arv, n4);
+    printf("Inserindo elementos... [INICIO]\n");
+    for(int i = 0; i < QUANT_TEST; i++) {
+        arv_insere(arv, inserir[i]);
+    }
+    printf("Inserindo elementos... [FIM]\n\n");
 
     // Buscar
-    
-    no = arv_busca(arv, n1);
-    if(no)
-        printf("Valor %d existe na arvore!\n", n1);
-    else
-        printf("Valor %d não existe na arvore!\n", n1);
+    printf("Buscando elementos... [INICIO]\n");
+    for(int i = 0; i < QUANT_TEST; i++) {
+        no = arv_busca(arv, buscar[i]);
 
-    no = arv_busca(arv, n2);
-    if(no)
-        printf("Valor %d existe na arvore!\n", n2);
-    else
-        printf("Valor %d não existe na arvore!\n", n2);
+        if(no)
+            printf("Valor %d existe na arvore!\n", buscar[i]);
+        else
+            printf("Valor %d não existe na arvore!\n", buscar[i]);
+    }
+    printf("Buscando elementos... [FIM]\n\n");
 
     // Remover
-
-    arv_remove(arv, n2);
-    no = arv_busca(arv, n2);
+    printf("Removendo elemento 30\n");
+    int r = 30;
+    arv_remove(arv, r);
+    printf("Buscando elemento 30 [INICIO]\n");
+    no = arv_busca(arv, r);
     if(no)
-        printf("Valor %d existe na arvore!\n", n2);
+        printf("Valor %d existe na arvore!\n", r);
     else
-        printf("Valor %d não existe na arvore!\n", n2);
+        printf("Valor %d não existe na arvore!\n", r);
+    printf("Buscando elemento 30 [FIM]\n\n");
+    
+    // Total de nóis
+    int totalno = arv_totalNo(arv);
+    printf("Total de nóis: %d\n\n", totalno);
+
+    // Mostrar arvores
+    printf("Mostrando arvore...\n");
+    arv_mostra(arv);
 
     // Liberar
 
