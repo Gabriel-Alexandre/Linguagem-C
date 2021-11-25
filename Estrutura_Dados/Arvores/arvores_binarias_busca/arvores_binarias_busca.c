@@ -9,7 +9,6 @@
 // return -1: Arvore não existe
 // return 1: Sucesso na execução da função
 
-
 struct arv {
     ArvNo* raiz;
 };
@@ -21,12 +20,12 @@ struct arvno {
 };
 
 Arv* arv_cria() {
-    Arv* arv = (Arv*) malloc(sizeof(Arv)); // Criar arvore
+    Arv* arv = (Arv*) malloc(sizeof(Arv)); // Criar árvore
 
     if(arv != NULL)
         arv->raiz = NULL; // Nó raiz aponta para NULL
 
-    return arv; // retorna arvore
+    return arv; // retorna árvore
 }
 
 static ArvNo* insere(ArvNo* raiz, int valor) {
@@ -52,7 +51,7 @@ int arv_insere(Arv* arv, int valor) {
     if(arv == NULL)
         return -1;
     
-    arv->raiz = insere(arv->raiz, valor); // Altera arvore
+    arv->raiz = insere(arv->raiz, valor); // Altera árvore
 
     return 1;
 }
@@ -81,15 +80,15 @@ static ArvNo* remover(ArvNo* raiz, int valor) {
             free(t);
         // Dois filhos
         } else {
-            // Identifica sucessor (filho da subarvore a esquerda que está mais a direita)
-            // Se o filho da subarvore a esquerda não tem filho a direita, ela é o sucessor
+            // Identifica sucessor (filho da sub-árvore a esquerda que está mais a direita)
+            // Se o filho da sub-árvore a esquerda não tem filho a direita, ela é o sucessor
             ArvNo* f = raiz->esq;
             while(f->dir != NULL) {
                 f = f->dir;
             }
             // Seta os valores
             raiz->info = f->info; // O valor do nó é substituido pelo valor do sucessor
-            raiz->esq = remover(raiz->esq, valor); // A subarvore a esquerda é atualizada
+            raiz->esq = remover(raiz->esq, valor); // A sub-árvore a esquerda é atualizada
         }
     }
 
@@ -100,7 +99,7 @@ int arv_remove(Arv* arv, int valor) {
     if(arv == NULL)
         return -1;
 
-    arv->raiz = remover(arv->raiz, valor); // Altera arvore
+    arv->raiz = remover(arv->raiz, valor); // Altera árvore
 
     return 1;
 }
@@ -129,16 +128,16 @@ static int totalNo(ArvNo *raiz) {
 
     int alt_esq = totalNo(raiz->esq); // Percorre recursivamente o nó a esquerda
     int alt_dir = totalNo(raiz->dir); // Percorre recursivamente o nó a direita
-    return(alt_esq + alt_dir + 1); // Retorna a quantidade total de nóis
+    return(alt_esq + alt_dir + 1); // Retorna a quantidade total de nós
 }
 
 int arv_totalNo(Arv *arv) {
     if(arv == NULL) 
         return -1;
     if(arv->raiz == NULL) 
-        return 0; // Arvore vaiza
+        return 0; // Árvore vaiza
 
-    return totalNo(arv->raiz); // Retorna total de nóis
+    return totalNo(arv->raiz); // Retorna total de nós
 }
 
 static void mostra(ArvNo *raiz) {
@@ -152,10 +151,10 @@ static void mostra(ArvNo *raiz) {
 }
 
 void arv_mostra(Arv* arv) {
-    if(arv == NULL || arv->raiz == NULL) // Arvore não existe ou está vazia
+    if(arv == NULL || arv->raiz == NULL) // Árvore não existe ou está vazia
         return;
     
-    mostra(arv->raiz); // Mostra os valores da arvore
+    mostra(arv->raiz); // Mostra os valores da árvore
 }
 
 static void libera(ArvNo* raiz) {
@@ -170,23 +169,8 @@ void arv_libera(Arv* arv) {
     if(arv == NULL) 
         return;
 
-    libera(arv->raiz); // Libera nóis
-    free(arv); // Libera arvore
+    libera(arv->raiz); // Libera nós
+    free(arv); // Libera árvore
 }
 
 #endif
-
-
-/*
-- Próximos passos:
-
-1- Entender e comentar funções implementadas. (OK)
-2- Testar funções implementadas. (OK)
-3- Implementar e comentar funções que faltam. (OK)
-4- Testar funções implementadas. (OK)
-5- Começar a escrever resposata da questão 1.
-6- Ajudar Anderson no que for necessário.
-7- Estudar e implementar arvores AVL.
-8- Estudar e implementar grafos.
-
-*/
