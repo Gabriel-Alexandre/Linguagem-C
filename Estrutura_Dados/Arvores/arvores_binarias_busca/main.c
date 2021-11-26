@@ -42,11 +42,11 @@ int main() {
         printf("Valor %d não existe na arvore!\n", r);
     printf("Buscando elemento 30 [FIM]\n\n");
     
-    // Total de nóis
+    // Total de nós
     int totalno = arv_totalNo(arv);
     printf("Total de nóis: %d\n\n", totalno);
 
-    // Mostrar arvores
+    // Mostrar árvore
     printf("Mostrando arvore...\n");
     arv_mostra(arv);
 
