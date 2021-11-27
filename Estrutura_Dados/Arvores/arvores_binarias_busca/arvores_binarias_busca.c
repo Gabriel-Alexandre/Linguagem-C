@@ -14,7 +14,7 @@ struct arv {
 };
 
 struct arvno {
-    char info;
+    int info;
     ArvNo* esq;
     ArvNo* dir;
 };
@@ -22,8 +22,7 @@ struct arvno {
 Arv* arv_cria() {
     Arv* arv = (Arv*) malloc(sizeof(Arv)); // Criar árvore
 
-    if(arv != NULL)
-        arv->raiz = NULL; // Nó raiz aponta para NULL
+    if(arv != NULL) arv->raiz = NULL; // Nó raiz aponta para NULL
 
     return arv; // retorna árvore
 }
@@ -48,8 +47,7 @@ static ArvNo* insere(ArvNo* raiz, int valor) {
 }
 
 int arv_insere(Arv* arv, int valor) {
-    if(arv == NULL)
-        return -1;
+    if(arv == NULL) return -1;
     
     arv->raiz = insere(arv->raiz, valor); // Altera árvore
 
@@ -57,8 +55,7 @@ int arv_insere(Arv* arv, int valor) {
 }
 
 static ArvNo* remover(ArvNo* raiz, int valor) {
-    if(raiz == NULL) 
-        return NULL;
+    if(raiz == NULL) return NULL;
     else if(raiz->info > valor)
         raiz->esq = remover(raiz->esq, valor); // Percorre recursivamente o nó a esquerda
     else if(raiz->info < valor)
@@ -91,13 +88,11 @@ static ArvNo* remover(ArvNo* raiz, int valor) {
             raiz->esq = remover(raiz->esq, valor); // A sub-árvore a esquerda é atualizada
         }
     }
-
     return raiz;
 }
 
 int arv_remove(Arv* arv, int valor) {
-    if(arv == NULL)
-        return -1;
+    if(arv == NULL) return -1;
 
     arv->raiz = remover(arv->raiz, valor); // Altera árvore
 
@@ -105,26 +100,22 @@ int arv_remove(Arv* arv, int valor) {
 }
 
 static ArvNo* busca(ArvNo* raiz, int valor) {
-    if(raiz == NULL) 
-        return NULL; 
+    if(raiz == NULL) return NULL; 
     else if(raiz->info > valor) 
         return busca(raiz->esq, valor); // Busca recursivamente o nó a esquerda
     else if(raiz->info < valor) 
         return busca(raiz->dir, valor); // Busca recursivamente o nó a direita
-    else 
-        return raiz;
+    else return raiz;
 }
 
 ArvNo* arv_busca(Arv* arv, int valor) {
-    if(arv == NULL)
-        return NULL;
+    if(arv == NULL) return NULL;
 
     return busca(arv->raiz, valor); // Retorna endereço do nó que contém a informação do valor recebido
 }
 
 static int totalNo(ArvNo *raiz) {
-    if(raiz == NULL)
-        return 0;
+    if(raiz == NULL) return 0;
 
     int alt_esq = totalNo(raiz->esq); // Percorre recursivamente o nó a esquerda
     int alt_dir = totalNo(raiz->dir); // Percorre recursivamente o nó a direita
@@ -132,17 +123,14 @@ static int totalNo(ArvNo *raiz) {
 }
 
 int arv_totalNo(Arv *arv) {
-    if(arv == NULL) 
-        return -1;
-    if(arv->raiz == NULL) 
-        return 0; // Árvore vaiza
+    if(arv == NULL) return -1;
+    if(arv->raiz == NULL) return 0; // Árvore vaiza
 
     return totalNo(arv->raiz); // Retorna total de nós
 }
 
 static void mostra(ArvNo *raiz) {
-    if(raiz == NULL)
-        return;
+    if(raiz == NULL) return;
 
     // mostra os valores em pos ordem
     mostra(raiz->esq); // Percorre recursivamente o nó a esquerda
@@ -166,8 +154,7 @@ static void libera(ArvNo* raiz) {
 }
 
 void arv_libera(Arv* arv) {
-    if(arv == NULL) 
-        return;
+    if(arv == NULL) return;
 
     libera(arv->raiz); // Libera nós
     free(arv); // Libera árvore

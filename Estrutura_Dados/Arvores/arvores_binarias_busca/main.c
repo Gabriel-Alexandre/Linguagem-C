@@ -23,10 +23,8 @@ int main() {
     for(int i = 0; i < QUANT_TEST; i++) {
         no = arv_busca(arv, buscar[i]);
 
-        if(no)
-            printf("Valor %d existe na arvore!\n", buscar[i]);
-        else
-            printf("Valor %d não existe na arvore!\n", buscar[i]);
+        if(no) printf("Valor %d existe na arvore!\n", buscar[i]);
+        else printf("Valor %d não existe na arvore!\n", buscar[i]);
     }
     printf("Buscando elementos... [FIM]\n\n");
 
@@ -36,10 +34,8 @@ int main() {
     arv_remove(arv, r);
     printf("Buscando elemento 30 [INICIO]\n");
     no = arv_busca(arv, r);
-    if(no)
-        printf("Valor %d existe na arvore!\n", r);
-    else
-        printf("Valor %d não existe na arvore!\n", r);
+    if(no) printf("Valor %d existe na arvore!\n", r);
+    else printf("Valor %d não existe na arvore!\n", r);
     printf("Buscando elemento 30 [FIM]\n\n");
     
     // Total de nós
@@ -51,7 +47,6 @@ int main() {
     arv_mostra(arv);
 
     // Liberar
-
     arv_libera(arv);
 
     return 0;
