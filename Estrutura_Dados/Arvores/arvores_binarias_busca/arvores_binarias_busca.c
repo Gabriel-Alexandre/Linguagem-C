@@ -129,6 +129,22 @@ int arv_totalNo(Arv *arv) {
     return totalNo(arv->raiz); // Retorna total de nós
 }
 
+static int folhas(ArvNo *raiz) {
+    if(raiz->esq == NULL && raiz->dir == NULL) {
+        return 1; // Se encontrou uma folha, retorna 1
+    } else {
+        int esquerda =  folhas(raiz->esq); // Percorre recursivamente o nó a esquerda
+        int direita = folhas(raiz->dir); // Percorre recursivamente o nó a direita
+        return direita + esquerda; // Retorna quantidade de nós folhas 
+    }
+}
+
+int arv_folhas(Arv* arv) {
+    if(arv == NULL) return -1;
+    if(arv->raiz == NULL) return 0; // Árvore vaiza
+    return (folhas(arv->raiz)); // Retorna total de nós folhas
+}
+
 static void mostra(ArvNo *raiz) {
     if(raiz == NULL) return;
 
