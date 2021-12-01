@@ -85,7 +85,7 @@ int main(void)
         pthread_create(&threads[i], NULL, cs, (void *)i);
     }
 
-    sleep(10);
+    sleep(30);
 
     return 0;
 }
