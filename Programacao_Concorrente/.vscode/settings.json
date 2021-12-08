@@ -7,6 +7,9 @@
         "pthread.h": "c",
         "stdio.h": "c",
         "unistd.h": "c",
-        "thread": "cpp"
+        "thread": "cpp",
+        "array": "c",
+        "string_view": "c",
+        "type_traits": "c"
     }
 }
